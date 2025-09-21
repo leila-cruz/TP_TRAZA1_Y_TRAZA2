@@ -19,7 +19,7 @@ public class Main {
         LocalTime horaApertura = LocalTime.of(9, 0, 0);
         LocalTime horaCierre = LocalTime.of(21, 0, 0);
 
-        // ========================== PAÍSES ================================
+        //-------------------------- PAÍSES --------------------------
 
         Pais argentina = Pais.builder()
                 .id(1L)
@@ -70,7 +70,7 @@ public class Main {
 
         Domicilio domcaba = Domicilio.builder()
                 .id(1L)
-                .calle("Pedrito Pedrero")
+                .calle("Martin Zapata")
                 .numero(3591)
                 .cp(1000)
                 .localidad(caba)
@@ -78,7 +78,7 @@ public class Main {
 
         Domicilio domlp = Domicilio.builder()
                 .id(2L)
-                .calle("Cabrita Cabrero")
+                .calle("Olascoaga")
                 .numero(1918)
                 .cp(1900)
                 .localidad(lp)
@@ -86,7 +86,7 @@ public class Main {
 
         Domicilio domccp = Domicilio.builder()
                 .id(3L)
-                .calle("Loquito Loquero")
+                .calle("Juan B. Justo")
                 .numero(49)
                 .cp(5000)
                 .localidad(ccp)
@@ -94,7 +94,7 @@ public class Main {
 
         Domicilio domvcp = Domicilio.builder()
                 .id(4L)
-                .calle("Bolita Bolero")
+                .calle("Martinez de Rozas")
                 .numero(2121)
                 .cp(5152)
                 .localidad(vcp)
