@@ -168,53 +168,31 @@ public class Main {
 
         // -------------------------- CATEGORÍAS --------------------------
 
-        Categoria hamburguesas = Categoria.builder().denominacion("Hamburguesas").esInsumo(false).build();
-        Categoria acompanamientos = Categoria.builder().denominacion("Acompañamientos").esInsumo(false).build();
-        Categoria bebidas = Categoria.builder().denominacion("Bebidas").esInsumo(false).build();
+        Categoria pizzas = Categoria.builder().denominacion("Pizzas").esInsumo(false).build();
+        Categoria sandwich = Categoria.builder().denominacion("Sandwich").esInsumo(false).build();
+        Categoria lomos = Categoria.builder().denominacion("Lomos").esInsumo(false).build();
         Categoria insumos = Categoria.builder().denominacion("Insumos").esInsumo(true).build();
 
-        // =-------------------------- UNIDADES MEDIDA --------------------------
+// -------------------------- UNIDADES MEDIDA --------------------------
 
-        UnidadMedida unidad = UnidadMedida.builder().denominacion("Unidad").build();
-        UnidadMedida kg = UnidadMedida.builder().denominacion("Kg").build();
-        UnidadMedida litro = UnidadMedida.builder().denominacion("Litro").build();
+        UnidadMedida kg = UnidadMedida.builder().denominacion("Kilogramos").build();
+        UnidadMedida litro = UnidadMedida.builder().denominacion("Litros").build();
         UnidadMedida gramos = UnidadMedida.builder().denominacion("Gramos").build();
 
-        unidadMedidaRepository.guardar(unidad);
         unidadMedidaRepository.guardar(kg);
         unidadMedidaRepository.guardar(litro);
         unidadMedidaRepository.guardar(gramos);
 
-        // -------------------------- ARTICULO INSUMO --------------------------
+// -------------------------- ARTICULO INSUMO --------------------------
 
-        ArticuloInsumo panHamburguesa = ArticuloInsumo.builder()
-                .denominacion("Pan de Hamburguesa")
-                .precioCompra(10.0)
-                .stockActual(500)
-                .stockMinimo(50)
-                .stockMaximo(1000)
-                .esParaElaborar(true)
-                .unidadMedida(unidad)
-                .build();
-
-        ArticuloInsumo carne = ArticuloInsumo.builder()
-                .denominacion("Carne Picada (Kg)")
-                .precioCompra(800.0)
+        ArticuloInsumo sal = ArticuloInsumo.builder()
+                .denominacion("Sal")
+                .precioCompra(50.0)
                 .stockActual(100)
                 .stockMinimo(10)
                 .stockMaximo(300)
                 .esParaElaborar(true)
-                .unidadMedida(kg)
-                .build();
-
-        ArticuloInsumo papa = ArticuloInsumo.builder()
-                .denominacion("Papa (Kg)")
-                .precioCompra(80.0)
-                .stockActual(200)
-                .stockMinimo(20)
-                .stockMaximo(500)
-                .esParaElaborar(true)
-                .unidadMedida(kg)
+                .unidadMedida(gramos)
                 .build();
 
         ArticuloInsumo aceite = ArticuloInsumo.builder()
@@ -227,183 +205,131 @@ public class Main {
                 .unidadMedida(litro)
                 .build();
 
-        articuloInsumoRepository.guardar(panHamburguesa);
-        articuloInsumoRepository.guardar(carne);
-        articuloInsumoRepository.guardar(papa);
-        articuloInsumoRepository.guardar(aceite);
-
-        insumos.getArticulos().add(panHamburguesa);
-        insumos.getArticulos().add(carne);
-        insumos.getArticulos().add(papa);
-        insumos.getArticulos().add(aceite);
-
-        // -------------------------- IMAGEN ARTICULO --------------------------
-
-        ImagenArticulo imgMcBurger1 = ImagenArticulo.builder().name("McBurger1").url("http://example.com/mcburger1").build();
-        ImagenArticulo imgMcBurger2 = ImagenArticulo.builder().name("McBurger2").url("http://example.com/mcburger2").build();
-        ImagenArticulo imgPapas1 = ImagenArticulo.builder().name("Papas1").url("http://example.com/papas1").build();
-        ImagenArticulo imgWhopper1 = ImagenArticulo.builder().name("Whopper1").url("http://example.com/whopper1").build();
-        ImagenArticulo imgPepsi1 = ImagenArticulo.builder().name("Pepsi1").url("http://example.com/pepsi1").build();
-
-        // ========================== ARTICULO MANUFACTURADO DETALLE ================================
-
-        ArticuloManufacturadoDetalle detPanHamburguesa = ArticuloManufacturadoDetalle.builder()
-                .cantidad(1)
-                .articuloInsumo(panHamburguesa)
+        ArticuloInsumo carne = ArticuloInsumo.builder()
+                .denominacion("Carne (Kg)")
+                .precioCompra(800.0)
+                .stockActual(100)
+                .stockMinimo(10)
+                .stockMaximo(300)
+                .esParaElaborar(true)
+                .unidadMedida(kg)
                 .build();
 
-        ArticuloManufacturadoDetalle detCarneBurger = ArticuloManufacturadoDetalle.builder()
+        ArticuloInsumo harina = ArticuloInsumo.builder()
+                .denominacion("Harina (Kg)")
+                .precioCompra(200.0)
+                .stockActual(150)
+                .stockMinimo(20)
+                .stockMaximo(400)
+                .esParaElaborar(true)
+                .unidadMedida(kg)
+                .build();
+
+        articuloInsumoRepository.guardar(sal);
+        articuloInsumoRepository.guardar(aceite);
+        articuloInsumoRepository.guardar(carne);
+        articuloInsumoRepository.guardar(harina);
+
+        insumos.getArticulos().add(sal);
+        insumos.getArticulos().add(aceite);
+        insumos.getArticulos().add(carne);
+        insumos.getArticulos().add(harina);
+
+// -------------------------- IMAGEN ARTICULO --------------------------
+
+        ImagenArticulo imgPizza1 = ImagenArticulo.builder().name("HawainaPizza1").url("http://example.com/hawaina1").build();
+        ImagenArticulo imgPizza2 = ImagenArticulo.builder().name("HawainaPizza2").url("http://example.com/hawaina2").build();
+        ImagenArticulo imgPizza3 = ImagenArticulo.builder().name("HawainaPizza3").url("http://example.com/hawaina3").build();
+
+        ImagenArticulo imgLomo1 = ImagenArticulo.builder().name("LomoCompletoLomo1").url("http://example.com/lomo1").build();
+        ImagenArticulo imgLomo2 = ImagenArticulo.builder().name("LomoCompletoLomo2").url("http://example.com/lomo2").build();
+        ImagenArticulo imgLomo3 = ImagenArticulo.builder().name("LomoCompletoLomo3").url("http://example.com/lomo3").build();
+
+// ========================== ARTICULO MANUFACTURADO DETALLE ================================
+
+        ArticuloManufacturadoDetalle detallePizzaHawaina1 = ArticuloManufacturadoDetalle.builder()
+                .cantidad(1)
+                .articuloInsumo(sal)
+                .build();
+
+        ArticuloManufacturadoDetalle detallePizzaHawaina2 = ArticuloManufacturadoDetalle.builder()
+                .cantidad(2)
+                .articuloInsumo(harina)
+                .build();
+
+        ArticuloManufacturadoDetalle detallePizzaHawaina3 = ArticuloManufacturadoDetalle.builder()
+                .cantidad(1)
+                .articuloInsumo(aceite)
+                .build();
+
+        ArticuloManufacturadoDetalle detalleLomoCompleto1 = ArticuloManufacturadoDetalle.builder()
+                .cantidad(1)
+                .articuloInsumo(sal)
+                .build();
+
+        ArticuloManufacturadoDetalle detalleLomoCompleto2 = ArticuloManufacturadoDetalle.builder()
+                .cantidad(1)
+                .articuloInsumo(aceite)
+                .build();
+
+        ArticuloManufacturadoDetalle detalleLomoCompleto3 = ArticuloManufacturadoDetalle.builder()
                 .cantidad(1)
                 .articuloInsumo(carne)
                 .build();
 
-        ArticuloManufacturadoDetalle detPapas = ArticuloManufacturadoDetalle.builder()
-                .cantidad(1)
-                .articuloInsumo(papa)
+// -------------------------- ARTÍCULOS MANUFACTURADOS --------------------------
+
+        ArticuloManufacturado pizzaHawaina = ArticuloManufacturado.builder()
+                .denominacion("Pizza Hawaina")
+                .precioVenta(1800.0)
+                .descripcion("Pizza Hawaina con jamón, queso y ananá")
+                .tiempoEstimadoMinutos(15)
+                .preparacion("Preparar la masa, colocar ingredientes y hornear")
+                .unidadMedida(gramos)
+                .imagenes(new HashSet<>(Set.of(imgPizza1, imgPizza2, imgPizza3)))
+                .articuloManufacturadoDetalles(new HashSet<>(Set.of(detallePizzaHawaina1, detallePizzaHawaina2, detallePizzaHawaina3)))
                 .build();
 
-        // -------------------------- ARTÍCULOS MANUFACTURADOS --------------------------
-
-        // -------------------------- ARTÍCULOS MCDONADS --------------------------
-        ArticuloManufacturado hamburguesaMc = ArticuloManufacturado.builder()
-                .denominacion("Hamburguesa Clásica Mc")
-                .precioVenta(1200.0)
-                .descripcion("Hamburguesa clásica con lechuga y queso")
-                .tiempoEstimadoMinutos(8)
-                .preparacion("Cocinar la carne y armar el sándwich")
-                .unidadMedida(unidad)
-                .imagenes(new HashSet<>(Set.of(imgMcBurger1, imgMcBurger2)))
-                .articuloManufacturadoDetalles(new HashSet<>(Set.of(detPanHamburguesa, detCarneBurger)))
+        ArticuloManufacturado lomoCompleto = ArticuloManufacturado.builder()
+                .denominacion("Lomo Completo")
+                .precioVenta(1500.0)
+                .descripcion("Lomo completo con carne, huevo, jamón y queso")
+                .tiempoEstimadoMinutos(12)
+                .preparacion("Cocinar la carne y armar el lomo con sus ingredientes")
+                .unidadMedida(gramos)
+                .imagenes(new HashSet<>(Set.of(imgLomo1, imgLomo2, imgLomo3)))
+                .articuloManufacturadoDetalles(new HashSet<>(Set.of(detalleLomoCompleto1, detalleLomoCompleto2, detalleLomoCompleto3)))
                 .build();
 
-        ArticuloManufacturado papasFritas = ArticuloManufacturado.builder()
-                .denominacion("Papas Fritas")
-                .precioVenta(450.0)
-                .descripcion("Porción de papas fritas")
-                .tiempoEstimadoMinutos(5)
-                .preparacion("Freír las papas")
-                .unidadMedida(unidad)
-                .imagenes(new HashSet<>(Set.of(imgPapas1)))
-                .articuloManufacturadoDetalles(new HashSet<>(Set.of(detPapas)))
-                .build();
+        articuloManufacturadoRepository.guardar(pizzaHawaina);
+        articuloManufacturadoRepository.guardar(lomoCompleto);
 
-        ArticuloManufacturado cocaCola = ArticuloManufacturado.builder()
-                .denominacion("Coca Cola 500ml")
-                .precioVenta(300.0)
-                .descripcion("Bebida gaseosa")
-                .tiempoEstimadoMinutos(0)
-                .preparacion("Servir fría")
-                .unidadMedida(unidad)
-                .imagenes(new HashSet<>())
-                .articuloManufacturadoDetalles(new HashSet<>())
-                .build();
+        pizzas.getArticulos().add(pizzaHawaina);
+        lomos.getArticulos().add(lomoCompleto);
 
-        // -------------------------- ARTÍCULOS BURGER KING --------------------------
-
-        ArticuloManufacturado whopper = ArticuloManufacturado.builder()
-                .denominacion("Whopper")
-                .precioVenta(1400.0)
-                .descripcion("Whopper clásico con tomate y lechuga")
-                .tiempoEstimadoMinutos(10)
-                .preparacion("Asar la carne y armar el sándwich")
-                .unidadMedida(unidad)
-                .imagenes(new HashSet<>(Set.of(imgWhopper1)))
-                .articuloManufacturadoDetalles(new HashSet<>(Set.of(detPanHamburguesa, detCarneBurger)))
-                .build();
-
-        ArticuloManufacturado papasKing = ArticuloManufacturado.builder()
-                .denominacion("Papas King")
-                .precioVenta(480.0)
-                .descripcion("Papas fritas estilo King")
-                .tiempoEstimadoMinutos(6)
-                .preparacion("Freír las papas")
-                .unidadMedida(unidad)
-                .imagenes(new HashSet<>(Set.of(imgPapas1)))
-                .articuloManufacturadoDetalles(new HashSet<>(Set.of(detPapas)))
-                .build();
-
-        ArticuloManufacturado pepsi = ArticuloManufacturado.builder()
-                .denominacion("Pepsi 500ml")
-                .precioVenta(300.0)
-                .descripcion("Bebida gaseosa")
-                .tiempoEstimadoMinutos(0)
-                .preparacion("Servir fría")
-                .unidadMedida(unidad)
-                .imagenes(new HashSet<>(Set.of(imgPepsi1)))
-                .articuloManufacturadoDetalles(new HashSet<>())
-                .build();
-
-        articuloManufacturadoRepository.guardar(hamburguesaMc);
-        articuloManufacturadoRepository.guardar(papasFritas);
-        articuloManufacturadoRepository.guardar(cocaCola);
-        articuloManufacturadoRepository.guardar(whopper);
-        articuloManufacturadoRepository.guardar(papasKing);
-        articuloManufacturadoRepository.guardar(pepsi);
-
-        hamburguesas.getArticulos().add(hamburguesaMc);
-        acompanamientos.getArticulos().add(papasFritas);
-        bebidas.getArticulos().add(cocaCola);
-
-        hamburguesas.getArticulos().add(whopper);
-        acompanamientos.getArticulos().add(papasKing);
-        bebidas.getArticulos().add(pepsi);
-
-        categoriaRepository.guardar(hamburguesas);
-        categoriaRepository.guardar(acompanamientos);
-        categoriaRepository.guardar(bebidas);
+        categoriaRepository.guardar(pizzas);
+        categoriaRepository.guardar(lomos);
         categoriaRepository.guardar(insumos);
+        categoriaRepository.guardar(sandwich);
 
-        // -------------------------- VINCULAR ARTÍCULOS A SUCURSALES --------------------------
+// -------------------------- VINCULAR ARTÍCULOS A SUCURSALES --------------------------
 
         SucursalArticulo sa1 = SucursalArticulo.builder()
                 .id(1L)
-                .sucursal(sucursal1) // Mc Donalds - CABA
-                .articulo(hamburguesaMc)
-                .stock(50)
+                .sucursal(sucursal1)
+                .articulo(pizzaHawaina)
+                .stock(20)
                 .build();
 
         SucursalArticulo sa2 = SucursalArticulo.builder()
                 .id(2L)
-                .sucursal(sucursal1) // Mc Donalds - CABA
-                .articulo(papasFritas)
-                .stock(80)
-                .build();
-
-        SucursalArticulo sa3 = SucursalArticulo.builder()
-                .id(3L)
-                .sucursal(sucursal2) // Mc Donalds - La Plata
-                .articulo(hamburguesaMc)
-                .stock(30)
-                .build();
-
-        SucursalArticulo sa4 = SucursalArticulo.builder()
-                .id(4L)
-                .sucursal(sucursal3) // Burger King - Córdoba Capital
-                .articulo(whopper)
-                .stock(40)
-                .build();
-
-        SucursalArticulo sa5 = SucursalArticulo.builder()
-                .id(5L)
-                .sucursal(sucursal3) // Burger King - Córdoba Capital
-                .articulo(papasKing)
-                .stock(60)
-                .build();
-
-        SucursalArticulo sa6 = SucursalArticulo.builder()
-                .id(6L)
-                .sucursal(sucursal4) // Burger King - Villa Carlos Paz
-                .articulo(whopper)
-                .stock(20)
+                .sucursal(sucursal1)
+                .articulo(lomoCompleto)
+                .stock(15)
                 .build();
 
         sucursal1.agregarArticulo(sa1);
         sucursal1.agregarArticulo(sa2);
-        sucursal2.agregarArticulo(sa3);
-        sucursal3.agregarArticulo(sa4);
-        sucursal3.agregarArticulo(sa5);
-        sucursal4.agregarArticulo(sa6);
-
         // -------------------------- CONSOLA --------------------------
 
         System.out.println("\n---------------- MOSTRAR TODOS LOS MANUFACTURADOS ----------------");
